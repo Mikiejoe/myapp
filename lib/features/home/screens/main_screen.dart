@@ -32,7 +32,7 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor:  Colors.red,
+      // backgroundColor:  Colors.red,
       body: _screens[_selectedIndex],
       bottomNavigationBar: CustomBottomNavigationBar(onTap: changeScreen,),
     );
