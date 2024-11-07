@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:myapp/features/home/screens/custom_list_tile.dart';
 import 'package:myapp/features/home/widgets/finance_card.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -84,15 +85,15 @@ class HomeScreen extends StatelessWidget {
               const SizedBox(
                 height: 14,
               ),
-            Container(
-
+              Container(
+                width: MediaQuery.of(context).size.width,
                 padding: const EdgeInsets.symmetric(horizontal: 12.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     FinanceCard(
                       color: Colors.greenAccent.shade100,
-                      title: "Income",
+                      title: "Incomes",
                       amount: "12600",
                       icon: Icons.arrow_downward_outlined,
                     ),
@@ -104,7 +105,45 @@ class HomeScreen extends StatelessWidget {
                     )
                   ],
                 ),
-              )
+              ),
+              const SizedBox(
+                height: 14,
+              ),
+              Container(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: Column(
+                  children: [
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        Text("Transactions"),
+                        TextButton(
+                          onPressed: () {},
+                          child: const Text(
+                            "See All",
+                            style: TextStyle(color: Colors.blue),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 10),
+                    Column(
+                      children: List<Widget>.generate(
+                        6,
+                        (index) => const Padding(
+                          padding: const EdgeInsets.only(bottom: 8.0),
+                          child: CustomListTile(
+                              title: "helo",
+                              icon: Icons.dinner_dining,
+                              subTitle: "subTitle",
+                              trailingTitle: "trailingTitle",
+                              trailingSubTitle: "trailingSubTitle",),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ),
             ],
           ),
         ),

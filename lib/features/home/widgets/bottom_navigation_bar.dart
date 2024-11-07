@@ -2,14 +2,18 @@ import 'package:flutter/material.dart';
 
 class CustomBottomNavigationBar extends StatelessWidget {
   final Function(int) onTap;
-  const CustomBottomNavigationBar({super.key, required this.onTap});
+  final Function showBottomSheet;
+  const CustomBottomNavigationBar({super.key, required this.onTap, required this.showBottomSheet});
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+      margin: const EdgeInsets.symmetric(
+        horizontal: 16,
+        vertical: 10,
+      ),
       decoration: BoxDecoration(
-          color: Colors.blue, borderRadius: BorderRadius.circular(12)),
+           borderRadius: BorderRadius.circular(12)),
       child: Row(
         children: [
           Expanded(
@@ -23,15 +27,15 @@ class CustomBottomNavigationBar extends StatelessWidget {
           Expanded(
             child: IconButton(
               onPressed: () => onTap(1),
-              icon: const Icon(Icons.bar_chart),
+              icon: const Icon(Icons.bar_chart,),
             ),
           ),
           // Icon for categories
           Expanded(
             child: Container(
-              padding: EdgeInsets.all(8),
+              padding: const EdgeInsets.all(8),
               decoration: const BoxDecoration(
-                color: Colors.white,
+                color: Colors.blue,
                 shape: BoxShape.circle,
               ),
               child: IconButton(
@@ -42,7 +46,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
                     ),
                   ),
                 ),
-                onPressed: () => onTap(2),
+                onPressed: () => showBottomSheet(),
                 icon: const Icon(Icons.add),
               ),
             ),

@@ -23,19 +23,60 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
   ];
   int _selectedIndex = 0;
 
-  void changeScreen(int index){
+  void changeScreen(int index) {
     setState(() {
       _selectedIndex = index;
     });
+  }
+
+  void show() {
+    final double height = MediaQuery.of(context).size.height * 0.4;
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return Container(
+          height: height,
+          padding: const EdgeInsets.symmetric(vertical: 12,horizontal: 20,),
+          decoration: const BoxDecoration(
+            color: Colors.white,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(20),
+              topRight: Radius.circular(20),
+            ),
+          ),
+          // height: 200, // Set your desired height
+          child: GridView.builder(
+            gridDelegate:   SliverGridDelegateWithMaxCrossAxisExtent(
+              maxCrossAxisExtent: height*0.8,
+              crossAxisSpacing: 16,
+              mainAxisSpacing: 16,
+              mainAxisExtent: height*0.4,
+            ),
+            itemCount: 4,
+            itemBuilder: (context, index) => Container(
+                decoration: BoxDecoration(
+                  color: Colors.blueGrey,
+                  borderRadius: BorderRadius.circular(20,
+                  ),
+                ),
+                height: 200,
+                width: 200,
+                ),
+          ),
+        );
+      },
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        // backgroundColor:  Colors.red,
         body: _screens[_selectedIndex],
-        bottomNavigationBar: CustomBottomNavigationBar(onTap: changeScreen,),
+        bottomNavigationBar: CustomBottomNavigationBar(
+          onTap: changeScreen,
+          showBottomSheet: show,
+        ),
       ),
     );
   }
