@@ -29,14 +29,25 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
     });
   }
 
+  final List<IconData> _list = [
+     Icons.attach_money_outlined,
+     Icons.attach_money_outlined,
+     Icons.wallet,
+     Icons.wallet,
+  ];
+
   void show() {
-    final double height = MediaQuery.of(context).size.height * 0.4;
+    final double height = MediaQuery.of(context).size.height * 0.7;
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
         return Container(
           height: height,
-          padding: const EdgeInsets.symmetric(vertical: 12,horizontal: 20,),
+          padding: EdgeInsets.only(
+            top: 8,
+            right: height * 0.04,
+            left: height * 0.04,
+          ),
           decoration: const BoxDecoration(
             color: Colors.white,
             borderRadius: BorderRadius.only(
@@ -45,23 +56,58 @@ class _MainHomeScreenState extends State<MainHomeScreen> {
             ),
           ),
           // height: 200, // Set your desired height
-          child: GridView.builder(
-            gridDelegate:   SliverGridDelegateWithMaxCrossAxisExtent(
-              maxCrossAxisExtent: height*0.8,
-              crossAxisSpacing: 16,
-              mainAxisSpacing: 16,
-              mainAxisExtent: height*0.4,
-            ),
-            itemCount: 4,
-            itemBuilder: (context, index) => Container(
-                decoration: BoxDecoration(
-                  color: Colors.blueGrey,
-                  borderRadius: BorderRadius.circular(20,
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              const Text("Add Transaction", style: TextStyle(fontSize: 20),),
+              const SizedBox(
+                height: 12,
+              ),
+              Expanded(
+                child: GridView.builder(
+                  gridDelegate: SliverGridDelegateWithMaxCrossAxisExtent(
+                    maxCrossAxisExtent: height * 0.5,
+                    crossAxisSpacing: 16,
+                    mainAxisSpacing: 16,
+                    mainAxisExtent:150,
+                  ),
+                  itemCount: 4,
+                  itemBuilder: (context, index) => Container(
+                    decoration: BoxDecoration(
+                      color: Colors.blue.shade50,
+                      boxShadow: [
+                        BoxShadow(
+                          // offset: Offset.fromDirection( 10,),
+                          color: Colors.grey.shade200,
+                          blurRadius: 10,
+                        ),
+                        BoxShadow(
+                          // offset: Offset.fromDirection( 10,),
+                          color: Colors.grey.shade200,
+                          blurRadius: 10,
+                        ),
+                        BoxShadow(
+                          // offset: Offset.fromDirection( 10,),
+                          color: Colors.grey.shade200,
+                          blurRadius: 10,
+                        ),
+                        BoxShadow(
+                          // offset: Offset.fromDirection( 10,),
+                          color: Colors.grey.shade200,
+                          blurRadius: 10,
+                        ),
+                      ],
+                      borderRadius: BorderRadius.circular(
+                        20,
+                      ),
+                    ),
+                    height: 200,
+                    width: 200,
+                    child: Icon(_list[index],size: 48,color: Colors.blueAccent,),
                   ),
                 ),
-                height: 200,
-                width: 200,
-                ),
+              ),
+            ],
           ),
         );
       },
